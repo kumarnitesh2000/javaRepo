@@ -12,10 +12,13 @@ public class LinkedList
 	    list.addEnd(40);list.addEnd(50);
 	    list.firstDelete();
 	    list.lastDelete();
+	    list.addEnd(90);
 	    list.printMyList();
 	    //reverse my linked list
 	    list.reverseList();
 	    list.printMyList();
+	    //Print the middle elements
+	    System.out.println(list.findMiddleElement());
 	}
 }
 //each node of the linked List
@@ -124,6 +127,19 @@ class List{
     		
     		
     	}
+    	
+    }
+    //return the data at the middle node
+    int findMiddleElement() {
+    	//slow pointer and fast pointer towards the first node 
+    	Node fast = this.head;
+    	Node slow = this.head;
+    	while(fast != null && fast.next != null) {
+    		slow = slow.next;
+    		fast = fast.next.next;
+    	}
+    	return slow.data;
+    	
     	
     }
     
