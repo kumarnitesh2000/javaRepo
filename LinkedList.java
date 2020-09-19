@@ -29,11 +29,6 @@ class Node{
         this.data = data;
     }
     
-    Node(){
-    	this.next = null;
-    	this.data = -1;
-    }
-    
 }
 
 class List{
@@ -41,7 +36,7 @@ class List{
     public Node head;
     //LinkedList constructor
     List(){
-        head = new Node();
+        this.head = null;
     }
     //adding the element initially
     void addInit(int data){
@@ -49,14 +44,14 @@ class List{
         //creating a Node 
         Node n = new Node(data);
         //if list is empty
-        if(this.head.next==null) {
-        this.head.next = n;
+        if(this.head==null) {
+        this.head = n;
         n.next = null;
         }
         //if list is not empty
         else {
-        	n.next = this.head.next ;
-        	this.head.next = n;
+        	n.next = this.head ;
+        	this.head = n;
         }
     } 
     
@@ -65,8 +60,8 @@ class List{
     	Node n = new Node(data);
     	System.out.println("Adding : "+data);
     	//if list is empty
-        if(this.head.next==null) {
-        this.head.next = n;
+        if(this.head==null) {
+        this.head = n;
         n.next = null;
         }
         else {
@@ -86,7 +81,7 @@ class List{
     
     //delete the last element
     void lastDelete() {
-    	if(this.head.next==null) {
+    	if(this.head==null) {
     		throw new IllegalArgumentException();
     	}
     	else {
@@ -106,7 +101,7 @@ class List{
     //reverse a linked list
     void reverseList() {
     	Node previous = null;
-    	Node nextOne = null;
+    	Node nextOne ;
     	Node current = this.head;
     	while(current!=null) {
     		nextOne = current.next;
@@ -119,7 +114,7 @@ class List{
     
     //delete the first element
     void firstDelete() {
-    	if(this.head.next==null) {
+    	if(this.head==null) {
     		throw new IllegalArgumentException();
     	}
     	else {
@@ -134,9 +129,10 @@ class List{
     
     
     void printMyList(){
-        Node initPointer = this.head.next;
+        Node initPointer = this.head;
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~");
         while(initPointer!=null) {
+        	
         	System.out.println(initPointer.data);
         	initPointer = initPointer.next;
         }
