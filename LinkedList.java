@@ -86,7 +86,7 @@ class List{
         n.next = null;
         }
         else {
-        	Node initPointer = this.head.next;
+        	Node initPointer = this.head;
         	//point towards the end node
         	while(initPointer.next!=null) {	
         		initPointer = initPointer.next;
