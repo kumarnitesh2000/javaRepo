@@ -13,12 +13,19 @@ public class LinkedList
 	    list.firstDelete();
 	    list.lastDelete();
 	    list.addEnd(90);
+	    list.addInit(70);
+	    list.addEnd(80);
 	    list.printMyList();
 	    //reverse my linked list
 	    list.reverseList();
 	    list.printMyList();
 	    //Print the middle elements
-	    System.out.println(list.findMiddleElement());
+	    System.out.println("~~~~~~~~~~~~~~~~~~~~~~\n"+list.findMiddleElement());
+	    list.rotateLinkedList(4);
+	    list.printRotatedList();
+	    //deleting the kth node
+	    list.deletek(4);
+	    
 	}
 }
 //each node of the linked List
@@ -58,6 +65,17 @@ class List{
         }
     } 
     
+    void deletek(int k) {
+    	Node current = this.head;
+    	int i=0;
+    	while(i<k-1) {
+    		current=current.next;
+    		i++;
+    	}
+    	System.out.println("Delete the k th node - "+current.data);
+    	deleteNode(current);
+    }
+    
     //adding the Element to the End 
     void addEnd(int data) {
     	Node n = new Node(data);
@@ -80,6 +98,55 @@ class List{
         }
         
         
+    }
+    //rotate the linked list by k steps
+    //10 - 20 - 30 - 40 - 50 - 60 and k is 4 
+    //then changed to 50 - 60 - 10 - 20 - 30 - 40
+    
+    void rotateLinkedList(int k) {
+    	
+    	Node temp = this.head;
+    	while(temp.next!=null) {
+    		temp=temp.next;
+    	}
+    	// temp pointing towards the end
+    	temp.next = this.head;
+    	
+    	int i=0;
+    	Node current = this.head;
+    	while(i<k-1) {
+    		current = current.next;
+    		i++;
+    	}
+    	
+    	this.head = current.next ;
+    	
+    	
+    	
+    }
+    
+    //print the rotated linked list
+    void printRotatedList() {
+    	System.out.println("~~~~~~~~~~~~~~~~~~~~~~");
+    	Node current = this.head;
+    	while(current.next!=this.head) {
+    		System.out.println(current.data);
+    		current=current.next;	
+    	}
+    	System.out.println(current.data);
+    	
+    	
+    	System.out.println("~~~~~~~~~~~~~~~~~~~~~~");
+    	
+    }
+    
+    //now delete the given node in the linked list without knowledge of head node
+    void deleteNode(Node n) {
+    	//n pointing towards the node to be deleted
+    	Node toBedeleted = n;
+    	n.data = toBedeleted.next.data;
+    	toBedeleted.next = toBedeleted.next.next;
+    	printRotatedList();
     }
     
     //delete the last element
