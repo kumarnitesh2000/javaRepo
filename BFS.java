@@ -17,6 +17,11 @@ public class BFS {
 		myGraph.createEdge(s, d);myGraph.createEdge(s, e);
 		//getting the neighbours of [s]
 	    s.getNeighbours();
+	    
+	    //neighbours of e and d 
+	    d.getNeighbours();e.getNeighbours();
+	    //traverse through BFS 
+	    myGraph.Bfs();
 	}
 }
 
@@ -29,11 +34,12 @@ class GraphNode<T>{
 	public List<GraphNode<T>> neighbours;
 	GraphNode(T data,int label){
 		//ready state
-		this.nodeStatus = 'r';
+		this.nodeStatus = 'r'; // or 'w'  , 'p'
 		Data<T> dataInNode = new Data<T>(data);
 		this.data = dataInNode;
 		this.label = label;
 		this.neighbours = new ArrayList<>();
+		
 		
 	}
 	
@@ -59,14 +65,17 @@ class GraphNode<T>{
 }
 
 //this is a Graph
-class Graph{
+class Graph<T>{
 	private int numEdges;
 	private int numVertex;
 	private boolean isDirectional;
+	public ArrayList<GraphNode<T>> nodes;
+	
 	
 	//constructor for graph
 	Graph(boolean directional){
 		this.isDirectional = directional;
+		new ArrayList<>();
 		
 	}
 	//get total vertices
@@ -101,6 +110,18 @@ class Graph{
 	s.neighbours.add(d);
 	d.neighbours.add(s);
 	}
+	
+	//bfs
+	public void Bfs() {
+		System.out.println();
+		System.out.println("Total Nodes in Graph ");
+		for(GraphNode<T> node : this.nodes) {
+			System.out.println(node);
+		}
+		//algo goes here
+	}
+	
+	
 }
 
 //data in each node 
@@ -118,6 +139,5 @@ class Data<T>{
 	
 	
 }
-
 
 
