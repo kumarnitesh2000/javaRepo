@@ -90,6 +90,9 @@ class Graph<T>{
 	//add a node in a graph
 	public <T> GraphNode<T> addNode(T data,int label) {
 		GraphNode<T> newNode  = new GraphNode<T>(data,label);
+		//how to add node in the nodes list 
+		
+		//not solved 
 		return newNode;
 		
 	}
