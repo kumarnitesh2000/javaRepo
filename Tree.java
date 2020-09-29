@@ -1,7 +1,10 @@
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 //Tree algo's goes here
 
@@ -30,6 +33,25 @@ public class Tree {
 		//level order traversal
 		System.out.println("");
 		tree.levelOrderTraversal(tree.root);
+		//vertical order traversal
+		System.out.println("");
+		int hd = 0; // of root node hd=0
+		HashMap<Integer,List<String>> map = new HashMap<Integer,List<String>>(); 
+		tree.verticalOrder(tree.root,hd,map);
+		printMyHashMap(map);
+		
+	}
+	//printing the hashMap
+	public static void printMyHashMap(HashMap<Integer,List<String>> mp) {
+		
+		Iterator hmIterator = mp.entrySet().iterator();
+
+        while (hmIterator.hasNext()) { 
+            Map.Entry mapElement = (Map.Entry)hmIterator.next(); 
+            System.out.println("\t"+mapElement.getKey()+"\t"+mapElement.getValue());
+        
+        }
+		
 	}
 	
 	
@@ -86,7 +108,29 @@ class TreeStructure{
 		
 	}
 	
-	
+	//vertical order traversal
+	public void verticalOrder(TreeNode node,int hd, HashMap<Integer,List<String>> mp) {
+		
+		if(node == null) 
+            return;
+		
+		if(mp.containsKey(hd)) {
+		List<String> list = mp.get(hd);
+		list.add(node.data);
+		}
+		else {
+			List<String> li  = new ArrayList<String>();
+			li.add(node.data);
+			
+			mp.put(hd, li);
+		}
+		
+		verticalOrder(node.left,hd-1,mp);
+		verticalOrder(node.right,hd+1,mp);
+		
+		
+		
+	}
 	
 	//bfs
 	public void levelOrderTraversal(TreeNode node) {
